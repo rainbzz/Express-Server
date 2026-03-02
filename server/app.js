@@ -1,10 +1,26 @@
-// import files and packages up here
+//imports and packages
+const express = require('express');
+const morgan = require('morgan');
+const topSpots = require('./data.json');
+const port = 3000;
 
+//create express server
+const app = express();
 
-// create your express server below
-var app;
+//add routes and middleware
+app.use(morgan('combined'));
 
-// add your routes and middleware below
+app.get('/', function(req, res) {
+    res.send('anything');
+});
 
-// finally export the express application
+app.get('/data', function(req, res) {
+    res.json(topSpots);
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
+// export the app
 module.exports = app;
